@@ -1,0 +1,127 @@
+[gd_scene load_steps=15 format=3 uid="uid://cyj87l2x6fffo"]
+
+[ext_resource type="Script" path="res://lvl2/enemy1.gd" id="1_psh4t"]
+[ext_resource type="Texture2D" uid="uid://dgh2qxkkk61d6" path="res://lvl2/enemy/IMG_0867-removebg-preview.png" id="1_uop8o"]
+[ext_resource type="Texture2D" uid="uid://duvg1tg0ei3pd" path="res://lvl2/enemy/IMG_0868-removebg-preview.png" id="2_cix4p"]
+[ext_resource type="Texture2D" uid="uid://c2ik070k15yjd" path="res://lvl2/enemy/IMG_0869-removebg-preview.png" id="3_g8gvc"]
+[ext_resource type="Texture2D" uid="uid://dbv44eypa5xiy" path="res://lvl2/enemy/IMG_0870-removebg-preview.png" id="4_mdgod"]
+[ext_resource type="Texture2D" uid="uid://dsdvter3a44of" path="res://lvl2/enemy/IMG_0871-removebg-preview.png" id="5_cyajx"]
+[ext_resource type="Texture2D" uid="uid://dhhiq21cnjkqr" path="res://lvl2/enemy/IMG_0872-removebg-preview.png" id="6_r1oph"]
+[ext_resource type="Texture2D" uid="uid://ctpc4txlipaca" path="res://lvl2/enemy/IMG_0873-removebg-preview.png" id="7_ul2ki"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vc4fh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uop8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cix4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g8gvc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mdgod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cyajx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_r1oph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ul2ki")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6dy5s"]
+radius = 26.0
+height = 90.0
+
+[sub_resource type="Animation" id="Animation_6suf3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_yu8ou"]
+resource_name = "walk"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bcj65"]
+_data = {
+"RESET": SubResource("Animation_6suf3"),
+"walk": SubResource("Animation_yu8ou")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_urrn3"]
+radius = 133.034
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_psh4t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-73, 80)
+scale = Vector2(0.605405, 0.578125)
+sprite_frames = SubResource("SpriteFrames_vc4fh")
+animation = &"walk"
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-79, 96)
+shape = SubResource("CapsuleShape2D_6dy5s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bcj65")
+}
+
+[node name="hitbox1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox1"]
+position = Vector2(-78, 90)
+shape = SubResource("CircleShape2D_urrn3")
+
+[node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="hitbox1" to="." method="_on_hitbox_1_body_entered"]
+[connection signal="body_exited" from="hitbox1" to="." method="_on_hitbox_1_body_exited"]
+[connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]

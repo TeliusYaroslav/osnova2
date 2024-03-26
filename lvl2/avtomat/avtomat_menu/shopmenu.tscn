@@ -1,0 +1,168 @@
+[gd_scene load_steps=16 format=3 uid="uid://bhx3hvo87fhat"]
+
+[ext_resource type="Script" path="res://lvl2/avtomat/avtomat_menu/shopmenu.gd" id="1_nifsh"]
+[ext_resource type="Texture2D" uid="uid://deht5d3nxl2n" path="res://lvl2/kar.png" id="2_hwh3c"]
+[ext_resource type="Texture2D" uid="uid://d1tf110tbe648" path="res://lvl2/avtomat/button/butt.png" id="2_oj184"]
+[ext_resource type="Texture2D" uid="uid://bm1xshcw0hft3" path="res://lvl2/simple_coins/11-removebg-preview.png" id="3_ncgi2"]
+[ext_resource type="Texture2D" uid="uid://b24ytiqwl22hl" path="res://lvl2/gold_coins/gold1-removebg-preview.png" id="4_pcfn5"]
+[ext_resource type="Texture2D" uid="uid://duqe24hqxfnjp" path="res://lvl2/avtomat/IMG_1146-removebg-preview.png" id="4_xhfsg"]
+[ext_resource type="Texture2D" uid="uid://cuvonebgu52d1" path="res://lvl2/avtomat/jump_menu.png" id="5_v1rr6"]
+[ext_resource type="Texture2D" uid="uid://dn16dtbrdvonj" path="res://lvl2/avtomat/speed-removebg-preview.png" id="6_hoypt"]
+[ext_resource type="Texture2D" uid="uid://du0bmbub36ms5" path="res://lvl2/avtomat/key.png" id="7_d0r5s"]
+[ext_resource type="Texture2D" uid="uid://bn40yevdp348d" path="res://lvl2/IMG_1155-removebg-preview.png" id="9_ktq4q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4fepo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oj184")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2mufr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oj184")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_urv42"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ncgi2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pcfn5")
+}],
+"loop": true,
+"name": &"gold_coin",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnjnj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xhfsg")
+}],
+"loop": true,
+"name": &"heart",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_v1rr6")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_d0r5s")
+}],
+"loop": true,
+"name": &"key",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hoypt")
+}],
+"loop": true,
+"name": &"speed",
+"speed": 5.0
+}]
+
+[sub_resource type="FontVariation" id="FontVariation_1fapl"]
+
+[node name="shopmenu" type="StaticBody2D"]
+position = Vector2(28, 21)
+script = ExtResource("1_nifsh")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -52.6666
+offset_top = -132.0
+offset_right = 203.333
+offset_bottom = 124.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_hwh3c")
+
+[node name="buttonleft" type="Button" parent="."]
+offset_left = 5.33337
+offset_top = 54.0
+offset_right = 55.3334
+offset_bottom = 121.0
+metadata/_edit_use_anchors_ = true
+
+[node name="buttonright" type="Button" parent="."]
+offset_left = 61.3334
+offset_top = 54.0
+offset_right = 111.333
+offset_bottom = 121.0
+metadata/_edit_use_anchors_ = true
+
+[node name="leftbutton" type="AnimatedSprite2D" parent="."]
+position = Vector2(21.3334, 137)
+scale = Vector2(0.666667, 0.876302)
+sprite_frames = SubResource("SpriteFrames_4fepo")
+
+[node name="rightbutton" type="AnimatedSprite2D" parent="."]
+position = Vector2(97.3334, 50.3182)
+rotation = 3.14159
+scale = Vector2(0.711344, 0.783609)
+sprite_frames = SubResource("SpriteFrames_2mufr")
+
+[node name="coincon" type="AnimatedSprite2D" parent="."]
+position = Vector2(215.333, 15)
+scale = Vector2(0.608247, 0.549505)
+sprite_frames = SubResource("SpriteFrames_urv42")
+
+[node name="icon" type="AnimatedSprite2D" parent="."]
+position = Vector2(56.3334, -11)
+scale = Vector2(0.851563, 0.734375)
+sprite_frames = SubResource("SpriteFrames_qnjnj")
+animation = &"heart"
+offset = Vector2(0, 30)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 106.333
+offset_top = 21.0
+offset_right = 476.333
+offset_bottom = 341.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_ktq4q")
+
+[node name="buybutton" type="Button" parent="."]
+offset_left = 136.333
+offset_top = 70.0
+offset_right = 258.333
+offset_bottom = 123.0
+theme_override_fonts/font = SubResource("FontVariation_1fapl")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 118.333
+offset_top = -11.0
+offset_right = 277.333
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 30
+text = "10
+"
+
+[connection signal="pressed" from="buttonleft" to="." method="_on_buttonleft_pressed"]
+[connection signal="pressed" from="buttonright" to="." method="_on_buttonright_pressed"]
+[connection signal="pressed" from="buybutton" to="." method="_on_buybutton_pressed"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://gjun0gihv4ls"]
+
+[ext_resource type="Script" path="res://lvl2/gold_coins/gold_coins.gd" id="1_2vplh"]
+[ext_resource type="Texture2D" uid="uid://b24ytiqwl22hl" path="res://lvl2/gold_coins/gold1-removebg-preview.png" id="1_3seku"]
+[ext_resource type="Texture2D" uid="uid://bvl1bmv4m2u5y" path="res://lvl2/gold_coins/gold2-removebg-preview.png" id="2_wbowy"]
+[ext_resource type="Texture2D" uid="uid://eetha0k3ctg3" path="res://lvl2/gold_coins/gold3-removebg-preview.png" id="3_q1t2i"]
+[ext_resource type="Texture2D" uid="uid://ep7nmcrw61qo" path="res://lvl2/gold_coins/gold4-removebg-preview.png" id="4_h7bmn"]
+[ext_resource type="Texture2D" uid="uid://ceg2fwneg40xh" path="res://lvl2/gold_coins/gold5-removebg-preview.png" id="5_d1og3"]
+[ext_resource type="Texture2D" uid="uid://cndbqcro7h5x" path="res://lvl2/gold_coins/gold6-removebg-preview.png" id="6_wummu"]
+[ext_resource type="Texture2D" uid="uid://c6n7xfq0544c7" path="res://lvl2/gold_coins/gold7-removebg-preview.png" id="7_a10ly"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mou73"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3seku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wbowy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q1t2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h7bmn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_d1og3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wummu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_a10ly")
+}],
+"loop": true,
+"name": &"gold_coins",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42o67"]
+radius = 30.0832
+
+[node name="gold_coins" type="Area2D"]
+position = Vector2(26, 25)
+script = ExtResource("1_2vplh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(718, 607)
+scale = Vector2(0.365979, 0.351485)
+sprite_frames = SubResource("SpriteFrames_mou73")
+animation = &"gold_coins"
+autoplay = "gold_coins"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(717, 606)
+shape = SubResource("CircleShape2D_42o67")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

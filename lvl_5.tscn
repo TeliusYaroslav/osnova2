@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcll2ry584jte"]
+
+[ext_resource type="Texture2D" uid="uid://c3rb1plw1hsdo" path="res://lvl4/IMG_1224.PNG" id="1_ic7n2"]
+
+[node name="lvl5" type="Node2D"]
+
+[node name="Img1224" type="Sprite2D" parent="."]
+position = Vector2(682, 335)
+scale = Vector2(1.06875, 0.867969)
+texture = ExtResource("1_ic7n2")

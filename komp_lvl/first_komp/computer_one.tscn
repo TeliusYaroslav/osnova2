@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://1nan6temoe72"]
+
+[ext_resource type="Texture2D" uid="uid://dd7rr1o082msk" path="res://komp_lvl/first_komp/kompik-removebg-preview.png" id="1_2xnod"]
+[ext_resource type="Script" path="res://komp_lvl/first_komp/computer_one.gd" id="1_6cgf3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_puhua"]
+radius = 95.5249
+
+[node name="Computer_one" type="Area2D"]
+script = ExtResource("1_6cgf3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(375, 273)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_2xnod")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(376, 267)
+shape = SubResource("CircleShape2D_puhua")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

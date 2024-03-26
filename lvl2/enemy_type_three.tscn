@@ -1,0 +1,100 @@
+[gd_scene load_steps=15 format=3 uid="uid://b2q0sikh345ji"]
+
+[ext_resource type="Script" path="res://lvl2/enemy_type_three.gd" id="1_cchqt"]
+[ext_resource type="Texture2D" uid="uid://dkggtxm1883gd" path="res://lvl2/enemy_type_three/IMG_1139-removebg-preview.png" id="1_f4ibc"]
+[ext_resource type="Texture2D" uid="uid://cu7hdny7q6xed" path="res://lvl2/enemy_type_three/IMG_1140-removebg-preview.png" id="2_kxnbr"]
+[ext_resource type="Texture2D" uid="uid://bgq1fh3pylje8" path="res://lvl2/boolet/IMG_1142-removebg-preview.png" id="3_585a5"]
+[ext_resource type="Texture2D" uid="uid://drj77aymllbxr" path="res://lvl2/enemy_type_three/IMG_1141-removebg-preview.png" id="3_el5qg"]
+[ext_resource type="Texture2D" uid="uid://bgkt1bqy5tmtc" path="res://lvl2/enemy_type_three/IMG_1143-removebg-preview.png" id="4_l5p0b"]
+[ext_resource type="Texture2D" uid="uid://cdltoxk3jsnbf" path="res://lvl2/enemy_type_three/IMG_1144-removebg-preview.png" id="5_7fwn8"]
+
+[sub_resource type="GDScript" id="GDScript_ojgql"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3tgsl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_585a5")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhxgp"]
+size = Vector2(24, 11)
+
+[sub_resource type="PackedScene" id="PackedScene_smoyy"]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(1073741827, 1073741826, 14, 13, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("Area2D", "Area2D", "script", "AnimatedSprite2D", "AnimatedSprite2D", "position", "scale", "sprite_frames", "animation", "CollisionShape2D", "CollisionShape2D", "position", "shape", "_on_body_entered", "body_entered"),
+"node_count": 3,
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 1, 2, 0, 0, 1073741824, 0, 4, 3, -1, 4, 5, 1, 6, 2, 7, 3, 8, 4, 0, 1073741825, 0, 10, 9, -1, 2, 11, 5, 12, 6, 0),
+"variants": [SubResource("GDScript_ojgql"), Vector2(0.999996, -3), Vector2(1.04688, 0.828125), SubResource("SpriteFrames_3tgsl"), &"shoot", Vector2(3, -0.5), SubResource("RectangleShape2D_uhxgp")],
+"version": 3
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w55v2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f4ibc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kxnbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_el5qg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l5p0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7fwn8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uf2dh"]
+radius = 26.0
+height = 104.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmbrg"]
+size = Vector2(607.875, 33)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_cchqt")
+bullet = SubResource("PackedScene_smoyy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(202, -50.375)
+scale = Vector2(0.46, 0.3745)
+sprite_frames = SubResource("SpriteFrames_w55v2")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 1
+frame_progress = 0.510274
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(190, -44)
+shape = SubResource("CapsuleShape2D_uf2dh")
+
+[node name="take_cooldown_damage" type="Timer" parent="."]
+
+[node name="Markerright2D" type="Marker2D" parent="."]
+position = Vector2(270, -49)
+
+[node name="detection_area" type="Area2D" parent="."]
+position = Vector2(3, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+position = Vector2(209, -9)
+shape = SubResource("RectangleShape2D_lmbrg")
+
+[connection signal="timeout" from="take_cooldown_damage" to="." method="_on_take_cooldown_damage_timeout"]
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]

@@ -1,0 +1,262 @@
+[gd_scene load_steps=35 format=3 uid="uid://b7hjd5jux6g1s"]
+
+[ext_resource type="Texture2D" uid="uid://70bfy0jr5cpy" path="res://lvl2/gg/IMG_1017-removebg-preview.png" id="1_6ai7r"]
+[ext_resource type="Texture2D" uid="uid://cuyojsbksb2ej" path="res://lvl2/jump_hero/IMG_1062.PNG" id="1_vkgre"]
+[ext_resource type="Texture2D" uid="uid://enpy3wf0fy46" path="res://lvl2/gg/IMG_1018-removebg-preview.png" id="2_4v5yk"]
+[ext_resource type="Texture2D" uid="uid://dwcb27ohglnr8" path="res://lvl2/jump_hero/IMG_1063.PNG" id="2_rxcip"]
+[ext_resource type="Texture2D" uid="uid://c3t1mv21kpe7l" path="res://lvl2/jump_hero/IMG_1064.PNG" id="3_nu4l0"]
+[ext_resource type="Texture2D" uid="uid://ckax8l1jr3hkv" path="res://lvl2/gg/IMG_1019-removebg-preview.png" id="3_xyhf2"]
+[ext_resource type="Texture2D" uid="uid://mi5g82j4h7du" path="res://lvl2/gg/IMG_1020-removebg-preview.png" id="4_00ylm"]
+[ext_resource type="Texture2D" uid="uid://bou7thmxaoskr" path="res://lvl2/jump_hero/IMG_1065.PNG" id="4_iaxtc"]
+[ext_resource type="Texture2D" uid="uid://ch7088grmow18" path="res://lvl2/gg/IMG_1021-removebg-preview.png" id="5_2xoyg"]
+[ext_resource type="Texture2D" uid="uid://cfff5tw3dv6a" path="res://lvl2/jump_hero/IMG_1066.PNG" id="5_e4she"]
+[ext_resource type="Texture2D" uid="uid://dn1m71lkx0o7v" path="res://lvl2/gg/IMG_1022-removebg-preview.png" id="6_27xmk"]
+[ext_resource type="Texture2D" uid="uid://dn3qx3dupmd0f" path="res://lvl2/jump_hero/IMG_1067.PNG" id="6_m68ro"]
+[ext_resource type="Texture2D" uid="uid://edvy5quw4c1g" path="res://lvl2/gg/IMG_1023-removebg-preview.png" id="7_5f6y3"]
+[ext_resource type="Texture2D" uid="uid://dcs6iruqh2cqd" path="res://lvl2/jump_hero/IMG_1068.PNG" id="7_amwxu"]
+[ext_resource type="Texture2D" uid="uid://b5154e2g8yel0" path="res://lvl2/jump_hero/IMG_1069.PNG" id="8_f1e2r"]
+[ext_resource type="Texture2D" uid="uid://b7r0do6q4oyrb" path="res://lvl2/gg/IMG_1024-removebg-preview.png" id="8_jtyrd"]
+[ext_resource type="Texture2D" uid="uid://dsvd5s1hs0t5f" path="res://lvl2/gg/IMG_1025-removebg-preview.png" id="9_de0r6"]
+[ext_resource type="Texture2D" uid="uid://65t0ex4ieo7o" path="res://lvl2/jump_hero/IMG_1070.PNG" id="9_g4fyp"]
+[ext_resource type="Texture2D" uid="uid://btf5ynrl5wwf7" path="res://lvl2/jump_hero/IMG_1071.PNG" id="10_0rj6q"]
+[ext_resource type="Texture2D" uid="uid://kqk2621vqumm" path="res://lvl2/gg/IMG_1026-removebg-preview.png" id="10_yrd3a"]
+[ext_resource type="Texture2D" uid="uid://bskhtwc13m5w" path="res://lvl2/jump_hero/IMG_1072.PNG" id="11_7tibf"]
+[ext_resource type="Texture2D" uid="uid://cpi3av2avvvxy" path="res://lvl2/jump_hero/IMG_1074.PNG" id="12_ibnr5"]
+[ext_resource type="Texture2D" uid="uid://b51qd45ltwd8l" path="res://lvl2/jump_hero/IMG_1075.PNG" id="13_6w74n"]
+[ext_resource type="Texture2D" uid="uid://b5uebsm8071n8" path="res://lvl2/jump_hero/IMG_1076.PNG" id="14_qy04a"]
+[ext_resource type="Texture2D" uid="uid://chw2mnhdtdl27" path="res://lvl2/jump_hero/IMG_1077.PNG" id="15_auq55"]
+[ext_resource type="Texture2D" uid="uid://c77p4mfd4psf0" path="res://lvl2/gg_stay/IMG_1122-removebg-preview.png" id="16_xdory"]
+[ext_resource type="Texture2D" uid="uid://c65lt211fohfu" path="res://lvl2/gg_stay/IMG_1123-removebg-preview.png" id="17_srh4e"]
+[ext_resource type="Texture2D" uid="uid://ddqnevjhbwwix" path="res://lvl2/gg_stay/IMG_1124-removebg-preview.png" id="18_xduht"]
+[ext_resource type="Texture2D" uid="uid://cvmxcxh88pmqj" path="res://lvl2/gg_stay/IMG_1125-removebg-preview.png" id="19_mfo4o"]
+[ext_resource type="Texture2D" uid="uid://b47vkunlm6gxh" path="res://lvl2/gg_stay/IMG_1126-removebg-preview.png" id="20_cd1ct"]
+[ext_resource type="Texture2D" uid="uid://321diklf0kny" path="res://lvl2/gg_stay/IMG_1127-removebg-preview.png" id="21_wjury"]
+
+[sub_resource type="GDScript" id="GDScript_n2ykr"]
+script/source = "#extends CharacterBody2D
+#
+#
+#const SPEED = 900.0
+#const JUMP_VELOCITY = -900.0
+#
+## Get the gravity from the project settings to be synced with RigidBody nodes.
+#var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+#
+#
+#func _physics_process(delta):
+	## Add the gravity.
+	#if not is_on_floor():
+		#velocity.y += gravity * delta
+#
+	## Handle jump.
+	#if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+#
+	## Get the input direction and handle the movement/deceleration.
+	## As good practice, you should replace UI actions with custom gameplay actions.
+	#var direction = Input.get_axis(\"ui_left\", \"ui_right\")
+	#if direction:
+		#velocity.x = direction * SPEED
+		#$AnimatedSprite2D.play(\"walk\")
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, SPEED)
+#
+	#move_and_slide()
+#
+#
+#func _on_area_2d_body_entered(body):
+	#if (body.name == \"gg4\"):
+		#get_tree().change_scene_to_file(\"res://lvl_5.tscn\")
+extends CharacterBody2D
+
+
+var enemy_inattak_range = false 
+var enemy_attak_cooldown
+
+var attack_ip = false
+var current_dir = 'none'
+
+
+var SPEED = 1000
+var JUMP_VELOCITY = -650.0
+const ladder = 20
+
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+
+func _physics_process(delta):
+
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	
+	var direction = Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction == 1:
+		$AnimatedSprite2D.flip_h = false
+
+		
+	elif direction == -1:
+		$AnimatedSprite2D.flip_h = true
+
+	
+	if direction:
+		velocity.x = direction * SPEED
+		if is_on_floor():
+			$AnimatedSprite2D.play(\"walk\")
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if is_on_floor():
+				$AnimatedSprite2D.play(\"stay\")
+			
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		$AnimatedSprite2D.play(\"jump\")
+		
+
+			
+	
+		
+	
+
+	move_and_slide()
+
+func player():
+	pass
+
+
+		
+		
+	
+		
+
+		
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grsdg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vkgre")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rxcip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nu4l0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_iaxtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e4she")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m68ro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_amwxu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_f1e2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_g4fyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0rj6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_7tibf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ibnr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_6w74n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qy04a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_auq55")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_xdory")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_srh4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xduht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_mfo4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_cd1ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_wjury")
+}],
+"loop": true,
+"name": &"stay",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6ai7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4v5yk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xyhf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_00ylm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2xoyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_27xmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5f6y3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jtyrd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_de0r6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yrd3a")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s66h8"]
+radius = 64.0
+height = 346.0
+
+[node name="gg4" type="CharacterBody2D"]
+script = SubResource("GDScript_n2ykr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-55, -90)
+scale = Vector2(0.953829, 0.824294)
+sprite_frames = SubResource("SpriteFrames_grsdg")
+animation = &"jump"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-70, -76)
+shape = SubResource("CapsuleShape2D_s66h8")

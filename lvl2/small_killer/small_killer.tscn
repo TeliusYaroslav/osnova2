@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bml7pw5pprndd"]
+
+[ext_resource type="Script" path="res://lvl2/small_killer/small_killer.gd" id="1_150w1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3c8lh"]
+size = Vector2(64, 20)
+
+[node name="small_killer" type="Area2D"]
+script = ExtResource("1_150w1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(22, 0)
+shape = SubResource("RectangleShape2D_3c8lh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

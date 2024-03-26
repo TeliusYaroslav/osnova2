@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://csb7g315e06nq"]
+
+[ext_resource type="Texture2D" uid="uid://cqwjhdgmnvsgw" path="res://lvl2/enemy3/IMG_0851-removebg-preview.png" id="1_iap4f"]
+[ext_resource type="Script" path="res://lvl2/enemy1.gd" id="1_mef68"]
+[ext_resource type="Texture2D" uid="uid://bfk8a4fpcqfku" path="res://lvl2/enemy3/IMG_0852-removebg-preview.png" id="2_oek12"]
+[ext_resource type="Texture2D" uid="uid://tf17o5xeccag" path="res://lvl2/enemy3/IMG_0853-removebg-preview.png" id="3_06usv"]
+[ext_resource type="Texture2D" uid="uid://el5luk6v27j5" path="res://lvl2/enemy3/IMG_0854-removebg-preview.png" id="4_b5tko"]
+[ext_resource type="Texture2D" uid="uid://75op5wi2tw58" path="res://lvl2/enemy3/IMG_0855-removebg-preview.png" id="5_cgv7v"]
+[ext_resource type="Texture2D" uid="uid://tk1pl7pojd81" path="res://lvl2/enemy3/IMG_0856-removebg-preview.png" id="6_b6nyh"]
+
+[sub_resource type="Animation" id="Animation_6p8pa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_8syc5"]
+resource_name = "walk"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u46rv"]
+_data = {
+"RESET": SubResource("Animation_6p8pa"),
+"walk": SubResource("Animation_8syc5")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4kw5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iap4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_oek12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_06usv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_b5tko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cgv7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b6nyh")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gnru2"]
+radius = 25.0
+height = 96.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0k6m0"]
+radius = 122.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_mef68")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u46rv")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-74.5, -70.5)
+scale = Vector2(0.597297, 0.559375)
+sprite_frames = SubResource("SpriteFrames_g4kw5")
+animation = &"walk"
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-78, -52)
+shape = SubResource("CapsuleShape2D_gnru2")
+
+[node name="hitbox1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox1"]
+position = Vector2(-79, -58)
+shape = SubResource("CircleShape2D_0k6m0")
+
+[node name="take_damage_cooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="hitbox1" to="." method="_on_hitbox_1_body_entered"]
+[connection signal="body_exited" from="hitbox1" to="." method="_on_hitbox_1_body_exited"]
+[connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]

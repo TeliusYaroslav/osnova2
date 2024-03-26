@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c147o650eii6e"]
+
+[ext_resource type="Script" path="res://lvl2/avtomat/shop.gd" id="1_g0uod"]
+[ext_resource type="Texture2D" uid="uid://8n3742fcohht" path="res://lvl2/avtomat/shopp-removebg-preview.png" id="2_8kwyg"]
+[ext_resource type="PackedScene" uid="uid://bhx3hvo87fhat" path="res://lvl2/avtomat/avtomat_menu/shopmenu.tscn" id="3_siilp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_djmdh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8kwyg")
+}],
+"loop": true,
+"name": &"shop",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2f4hs"]
+size = Vector2(136, 203)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_twmd1"]
+radius = 104.019
+
+[node name="shop" type="StaticBody2D"]
+script = ExtResource("1_g0uod")
+
+[node name="shopart" type="AnimatedSprite2D" parent="."]
+position = Vector2(19, 28)
+sprite_frames = SubResource("SpriteFrames_djmdh")
+animation = &"shop"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 33.5)
+shape = SubResource("RectangleShape2D_2f4hs")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, 74)
+shape = SubResource("CircleShape2D_twmd1")
+
+[node name="shopmenu" parent="." instance=ExtResource("3_siilp")]
+position = Vector2(-132, -239)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=3 uid="uid://cj17j7ipv4per"]
+
+[ext_resource type="Texture2D" uid="uid://bm1xshcw0hft3" path="res://lvl2/simple_coins/11-removebg-preview.png" id="1_2qx80"]
+[ext_resource type="Script" path="res://lvl2/simple_coins/simple_coin.gd" id="1_7ykma"]
+[ext_resource type="Texture2D" uid="uid://min0qer2uj7i" path="res://lvl2/simple_coins/22-removebg-preview.png" id="2_k2t5s"]
+[ext_resource type="Texture2D" uid="uid://cf4s3fhmmgrh4" path="res://lvl2/simple_coins/33-removebg-preview.png" id="3_tdd8q"]
+[ext_resource type="Texture2D" uid="uid://byv3aw67jwroq" path="res://lvl2/simple_coins/44-removebg-preview.png" id="4_it40q"]
+[ext_resource type="Texture2D" uid="uid://dki3qucqcfccp" path="res://lvl2/simple_coins/55-removebg-preview.png" id="5_7akod"]
+[ext_resource type="Texture2D" uid="uid://bbkp2hytuji6q" path="res://lvl2/simple_coins/66-removebg-preview.png" id="6_xg3tk"]
+[ext_resource type="Texture2D" uid="uid://dl5owrhy6jubp" path="res://lvl2/simple_coins/77-removebg-preview.png" id="7_fylv5"]
+[ext_resource type="Texture2D" uid="uid://b7renkf2c2l0m" path="res://lvl2/simple_coins/88-removebg-preview.png" id="8_jtgeh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ixtpu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2qx80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k2t5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tdd8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_it40q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7akod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xg3tk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fylv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jtgeh")
+}],
+"loop": true,
+"name": &"coin_anim",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_om0cj"]
+radius = 38.833
+
+[node name="Simple_coin" type="Area2D"]
+script = ExtResource("1_7ykma")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(355.5, 725.625)
+scale = Vector2(0.386598, 0.372525)
+sprite_frames = SubResource("SpriteFrames_ixtpu")
+animation = &"coin_anim"
+autoplay = "coin_anim"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(352, 726)
+shape = SubResource("CircleShape2D_om0cj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

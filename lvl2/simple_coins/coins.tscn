@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://buirtwx74s0hg"]
+
+[ext_resource type="Texture2D" uid="uid://bm1xshcw0hft3" path="res://lvl2/simple_coins/11-removebg-preview.png" id="1_licrx"]
+[ext_resource type="Texture2D" uid="uid://min0qer2uj7i" path="res://lvl2/simple_coins/22-removebg-preview.png" id="2_eqp0d"]
+[ext_resource type="Texture2D" uid="uid://cf4s3fhmmgrh4" path="res://lvl2/simple_coins/33-removebg-preview.png" id="3_sc8iy"]
+[ext_resource type="Texture2D" uid="uid://byv3aw67jwroq" path="res://lvl2/simple_coins/44-removebg-preview.png" id="4_a1vj5"]
+[ext_resource type="Texture2D" uid="uid://dki3qucqcfccp" path="res://lvl2/simple_coins/55-removebg-preview.png" id="5_skaqk"]
+[ext_resource type="Texture2D" uid="uid://bbkp2hytuji6q" path="res://lvl2/simple_coins/66-removebg-preview.png" id="6_yi6en"]
+[ext_resource type="Texture2D" uid="uid://dl5owrhy6jubp" path="res://lvl2/simple_coins/77-removebg-preview.png" id="7_2ujib"]
+[ext_resource type="Texture2D" uid="uid://b7renkf2c2l0m" path="res://lvl2/simple_coins/88-removebg-preview.png" id="8_5biju"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yv13y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_licrx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eqp0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sc8iy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a1vj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_skaqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yi6en")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2ujib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5biju")
+}],
+"loop": true,
+"name": &"simple",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5gqxs"]
+radius = 29.2746
+
+[node name="Area2D" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(416, 731)
+scale = Vector2(0.329897, 0.351485)
+sprite_frames = SubResource("SpriteFrames_yv13y")
+animation = &"simple"
+autoplay = "simple"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(416, 730)
+shape = SubResource("CircleShape2D_5gqxs")

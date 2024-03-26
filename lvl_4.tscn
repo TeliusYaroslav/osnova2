@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc5mfockoqg7t"]
+
+[sub_resource type="TileSet" id="TileSet_bg43x"]
+physics_layer_0/collision_layer = 1
+
+[node name="lvl4" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_bg43x")
+format = 2

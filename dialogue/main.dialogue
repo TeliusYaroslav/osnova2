@@ -1,0 +1,24 @@
+~ start
+
+сотрудник : Боюсь что в скором времени они опять прийдут
+игрок : кто ,они???
+сотрудник : долгая история , походи поспрашивай ,мне раюотать надо 
+сотрудник : столько неизвестной энергии
+игрок : ладнооооо , не отвлекаю 
+сотрудник : вот и славно 
+
+#if apple_status == "has":
+#	Bobi: I have a covid.
+#	- Go to Carl
+#		set apple_status = "comon"
+#		Nathan: Thank
+#	- keep it
+#		Bobi: but i'm a human
+#		Nathan: That's enough.
+#elif apple_status == "gave":
+#	Nathan:Thanks for your visit
+
+#else:
+#	Natha:Let's go to the carl and took a second detail.			
+	
+=> END
